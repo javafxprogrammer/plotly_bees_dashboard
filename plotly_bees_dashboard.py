@@ -17,25 +17,32 @@ app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 app.layout = html.Div([
 
     dbc.Row([
-        dbc.Col(html.Div(html.Img(src=r"assets/logo.png",  style={'height':'50px'})), md=3, className="text-center mt-3 mx-0"),
+        dbc.Col(html.Div(html.Img(src=r"assets/bee_logo.png",  style={'height':'50px'})), md=3, className="text-center mt-3 mx-0"),
         dbc.Col(html.Div(html.H1("Factors Affecting Bees in USA")), md=6, className="text-center mt-3 mx-0")
     ]),
 
     dbc.Row([
         dbc.Col(html.Div(
+            html.P("This dashboard shows factors leading to reduction in bee population in USA. Factors such as desease and pestisides are taken into account for each state and year in which the data was collected.")), className="mt-5 mx-3")
+    ]),
+
+    dbc.Row([
+        dbc.Col(html.Div(
+            ["Year: ",
             dcc.Dropdown(
                 id="select_year",
                 options=[{"label": str(year), "value": year} for year in df['Year'].unique()],
                 multi=False,
                 value=df['Year'].unique()[0],
-                )), md=6, className="mt-3"),
+                )]), md=6, className="mt-3"),
         dbc.Col(html.Div(
+            ["Affected by: ",
             dcc.Dropdown(
                 id="select_affected_by",
                 options=[{"label": affect, "value": affect} for affect in df['Affected by'].unique()],
                 multi=True,
                 value=df['Affected by'].unique()[0],
-                )), md=6, className="mt-3"),
+                )]), md=6, className="mt-3"),
                  ], className="d-flex justify-content-center mx-0"),       
 
     dbc.Row([
