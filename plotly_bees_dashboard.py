@@ -82,7 +82,7 @@ def update_graph(year_option, affected_by_option):
         hover_data=['State', 'Pct of Colonies Impacted'],
         color_continuous_scale=px.colors.sequential.YlOrRd,
         labels={"Pct of Colonies Impacted": "% of Bee Colonies"},
-        title="Average % of Colonies Impacted in each state in {year}".format(year=year)
+        title="Avg % of Colonies Impacted in each state in {year}".format(year=year)
     )
     
     df_lineC = df[(df['Affected by'].isin(affected_by_option))]
@@ -91,7 +91,7 @@ def update_graph(year_option, affected_by_option):
         data_frame=df_year_affected_by.groupby(by=['State', 'state_code']).agg({'Pct of Colonies Impacted':'mean'}).reset_index(), 
         x="State", 
         y="Pct of Colonies Impacted", 
-        title="Average % of Colonies Impacted in each state in {year}".format(year=year),
+        title="Avg % of Colonies Impacted in each state in {year}".format(year=year),
         labels={"Pct of Colonies Impacted": "% of Bee Colonies"}
     )
     fig_bar.update_layout(xaxis={'categoryorder':'total descending'})
@@ -100,7 +100,7 @@ def update_graph(year_option, affected_by_option):
         data_frame=df_lineC.groupby(by=['Year','State']).agg({'Pct of Colonies Impacted':'mean'}).reset_index(), 
         x="Year", 
         y="Pct of Colonies Impacted", 
-        title="Average % of Colonies Impacted in each state",
+        title="Avg % of Colonies Impacted in each state",
         labels={"Pct of Colonies Impacted": "% of Bee Colonies"},
         color="State"
     )  
@@ -112,7 +112,7 @@ def update_graph(year_option, affected_by_option):
         values="Pct of Colonies Impacted",
         names="State",
         hole=0.3,
-        title="Average % of Colonies Impacted in each state in {year}".format(year=year)
+        title="Avg % of Colonies Impacted in each state in {year}".format(year=year)
     )
     fig_pie.update_traces(textposition='inside', textinfo='percent+label+value')
     
